@@ -1,25 +1,28 @@
 
 <?php
-require_once "classBanc.php";
 
-$customer = new Account(1, "Juan", "Perez Gomez", 1000);
+  require_once "clases.php";
 
-
-$amount = $_POST ["amount"];
-
+  $accountNumber = $_POST['accountNumber'];
+  $name = $_POST['name'];
+  $lastName = $_POST['lastName'];
+  $balance = $_POST['balance'];
+  $amount = $_POST['amount'];
+  $action = $_POST['action'];
+  $customer = new Account($accountNumber, $name, $lastName, $balance);
+  $customer-> print(). "</br>";
  
 
-echo $customer->deposit($amount);
-echo $customer->withdraw($amount);
-
-
-
-
-
-
-
-
-
-
-
+     if ($action == "deposit" ) {
+        echo "El ingreso se ha realizado correctamente, el nuevo saldo es: " . $customer->deposit($amount) . " €";
+     }
+     else {
+        if($balance>=$amount ) {
+           echo "El reintegro se ha realizado correctamente, el nuevo saldo es: " . $customer->withdraw($amount) . " €";
+        }
+        else {
+           echo "Lo siento, no hay saldo suficiente";
+        }
+     }
+  
 ?>
